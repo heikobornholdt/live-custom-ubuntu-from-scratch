@@ -34,6 +34,15 @@ function customize_image() {
     nano \
     less
 
+    echo "root:root"|chpasswd
+
+    # ssh server
+    apt-get install -y \
+    openssh-server
+
+    echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+    systemctl reload sshd.service
+
     # purge
     apt-get purge -y \
     transmission-gtk \
